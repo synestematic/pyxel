@@ -26,6 +26,8 @@ LEFT_BRACKET_BIG = {'u': 32, 'v': 16, 'w':8, 'h':48}
 RIGHT_BRACKET = {'u': 24, 'v': 32, 'w':8, 'h':32}
 RIGHT_BRACKET_BIG = {'u': 40, 'v': 16, 'w':8, 'h':48}
 
+UP_BRACKET = {'u': 32, 'v': 0, 'w':16, 'h':4}
+
 TROPHEY = {'u': 16, 'v': 12, 'w':12, 'h':20}
 
 SPAZIO_LATERALE = 6
@@ -34,6 +36,8 @@ SMALL_SPACE = 4
 WIDTH_FLAG = 16
 WIDTH_TOTALE = 200
 HEIGHT_TOTALE = 100
+
+META_SCHERMO = WIDTH_TOTALE / 2
 
 BG = 0
 
@@ -116,13 +120,26 @@ def Finale(team1, team2, quanto_in_giu):
         winner = team1
     if goals2 > goals1:
         winner = team2
+    pyxel.blt(**team1, img=0, x=META_SCHERMO-29, y=quanto_in_giu)
+    pyxel.blt(**team2, img=0, x=META_SCHERMO+13, y=quanto_in_giu)
+    pyxel.blt(
+        **UP_BRACKET, img=0,
+        x=WIDTH_TOTALE/2-UP_BRACKET['w']/2,
+        y=quanto_in_giu+4
+    )
     return winner
+
+
+def Champion(team):
+    pyxel.blt(**team, img=0, x=META_SCHERMO-WIDTH_FLAG/2, y=22)
 
 
 def DrawStuff():
     pyxel.cls(col=BG)
-    pyxel.text(x=51, y=4, s="FIFA WORLD CUP QATAR 2022", col=pyxel.frame_count % 16)
-    pyxel.blt(img=0, x=WIDTH_TOTALE/2-TROPHEY['u']/2, y=12, **TROPHEY)
+    pyxel.blt(img=0, x=WIDTH_TOTALE/2-TROPHEY['u']/2+1, y=68, **TROPHEY)
+    pyxel.text(
+        x=51, y=HEIGHT_TOTALE-9, s="FIFA WORLD CUP QATAR 2022", col=pyxel.frame_count % 16
+    )
 
     ####################
     # QUARTI DI FINALE #
@@ -141,7 +158,7 @@ def DrawStuff():
     )
 
     WINNER_QF3 = QuartoFinaleDestra(
-        team1=[ENGLAND, 1],
+        team1=[ENGLAND, 8],
         team2=[FRANCE, 2],
         quanto_in_giu=SPAZIO_LATERALE
     )
@@ -169,15 +186,18 @@ def DrawStuff():
         quanto_in_giu=SPAZIO_LATERALE
     )
 
+
     ##########
     # FINALE #
     ##########
 
-    CHAMPION = Finale(
+    WINNER_FINAL = Finale(
         team1=[WINNER_SF1, 0],  # Argentina
-        team2=[WINNER_SF2, 0],  # France
-        quanto_in_giu=SPAZIO_LATERALE
+        team2=[WINNER_SF2, 7],  # France
+        quanto_in_giu=42
     )
+
+    Champion(WINNER_FINAL)
 
 
 
