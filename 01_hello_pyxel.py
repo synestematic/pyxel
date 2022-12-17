@@ -127,6 +127,8 @@ def Finale(team1, team2, quanto_in_giu):
         x=WIDTH_TOTALE/2-UP_BRACKET['w']/2,
         y=quanto_in_giu+4
     )
+    pyxel.text(s=str(goals1), x=META_SCHERMO-10, y=quanto_in_giu+12, col=15)
+    pyxel.text(s=str(goals2), x=META_SCHERMO+8 , y=quanto_in_giu+12, col=15)
     return winner
 
 
