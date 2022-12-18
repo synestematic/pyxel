@@ -160,7 +160,7 @@ def DrawStuff():
     )
 
     WINNER_QF3 = QuartoFinaleDestra(
-        team1=[ENGLAND, 8],
+        team1=[ENGLAND, 1],
         team2=[FRANCE, 2],
         quanto_in_giu=SPAZIO_LATERALE
     )
@@ -194,8 +194,8 @@ def DrawStuff():
     ##########
 
     WINNER_FINAL = Finale(
-        team1=[WINNER_SF1, 0],  # Argentina
-        team2=[WINNER_SF2, 7],  # France
+        team1=[WINNER_SF1, 7],  # Argentina
+        team2=[WINNER_SF2, 5],  # France
         quanto_in_giu=42
     )
 
